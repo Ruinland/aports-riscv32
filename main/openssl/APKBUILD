@@ -68,6 +68,7 @@ build() {
 		x86_64)		_target="linux-x86_64"; _optflags="enable-ec_nistp_64_gcc_128" ;;
 		s390x) 		_target="linux64-s390x";;
 		riscv64)	_target="linux-generic64";;
+		riscv32)	_target="linux-generic32";;
 		*)		msg "Unable to determine architecture from (CARCH=$CARCH)" ; return 1 ;;
 	esac
 
@@ -79,6 +80,7 @@ build() {
 	if [ "$CBUILD" != "$CHOST" ]; then
 		case $CARCH in
 			riscv64) _optflags="$_optflags no-threads";;
+			riscv32) _optflags="$_optflags no-threads";;
 		esac
 	fi
 
